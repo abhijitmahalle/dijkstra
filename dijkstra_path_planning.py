@@ -317,4 +317,27 @@ def nodeWithLowestC2C(open_list):
             continue
     return node
 
+def backtracking(closed_list):
+    '''
+    Input:
+    closed_list : dictionary of all closed nodes
+    
+    Output:
+    path : list[nodes from goal node to start node]
+    '''
+    path = []
+    goal = list(closed_list)[-1]
+    path.append(goal)
+    
+    while True:
+        parent = closed_list[goal][0]
+        
+        if parent == None:
+            break 
+            
+        path.append(parent)
+        goal = parent
+        
+    return path
+
 
