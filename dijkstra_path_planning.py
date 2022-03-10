@@ -389,3 +389,87 @@ def visualization(img_map, obstacle_space, visited_node, optimal_path):
         i+=1
     out.release()
     print("Video output generated")
+
+if __name__ == '__main__':
+    
+    while True:
+        initial_node = tuple(map(int, input("Enter initial node: ").split(",")))
+        if obstacle_space(initial_node):
+            print("\nThe start node is in the obstacle space. Please try again.\n")
+        else:
+            print("\nStart node accepted\n")
+            break
+    while True:
+        goal_node = tuple(map(int, input("Enter goal node: ").split(",")))
+        if obstacle_space(goal_node):
+            print("\nThe goal node is in the obstacle space. Please try again.\n")
+        else:
+            print("\nGoal node accepted\n")
+            break
+
+    open_list = {}
+    open_list[initial_node] = [None, 0]
+    closed_list = {}
+    node_index = 1
+    visited_node = []
+    visited_node.append(initial_node)
+    count = 0
+    
+    while True:
+        node = nodeWithLowestC2C(open_list)
+        node_info = open_list.pop(node)
+        closed_list[node] = node_info
+
+        if (node == goal_node):
+            print("Goal node reached\n")
+            break
+
+        action_success, new_node, new_node_info = ActionMoveLeft(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveRight(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveUp(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveDown(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveUpLeft(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveUpRight(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveDownLeft(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+
+        action_success, new_node, new_node_info = ActionMoveDownRight(node, node_info)
+        if action_success:
+            decisionOnNode(obstacle_space, new_node, new_node_info, open_list, closed_list)
+            visited_node.append(new_node)
+        
+        count += 1
+        if (not bool(open_list)) and count==100000:
+                print("No solution found")
+                break
+
+    optimal_path = backtracking(closed_list)
+    final_map = np.zeros((250, 400, 3), dtype = np.uint8)
+    visited_node = removeDuplicate(visited_node)
+    visualization(final_map, obstacle_space, visited_node, optimal_path)
