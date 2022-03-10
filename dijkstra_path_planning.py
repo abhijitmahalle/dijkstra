@@ -353,3 +353,39 @@ def removeDuplicate(visited_node):
     seen_add = seen.add
     return [x for x in visited_node if not (x in seen or seen_add(x))]
 
+#Function that visualizes the output of Dijkstra algorithm by generating a .avi video file
+def visualization(img_map, obstacle_space, visited_node, optimal_path):
+    '''
+    Input:
+    img_map        : image array of size 250x400
+    obstacle_space : function that defines the obstacle space
+    visited_node   : list of all visited nodes
+    optimal_path   : path from goal node to start node
+    
+    Output:
+    "project2.avi" video file stored in the project folder
+    '''
+    print("Generating video output named 'project2'...\n")
+    out = cv.VideoWriter('project2.avi',cv.VideoWriter_fourcc(*'XVID'), 3000, (400,250))
+    for y in range(img_map.shape[0]):
+        for x in range(img_map.shape[1]):
+            node = (x, y)
+            if obstacle_space(node):
+                img_map[y-1][x-1] = [0, 0, 255]
+            else:
+                img_map[y-1][x-1] = [0, 0, 0]
+    
+    for i in visited_node:
+        img_map[i[1]-1][i[0]-1] = [255, 255, 255]
+        a = cv.flip(img_map, 0)
+        out.write(a)
+    
+    path = copy.deepcopy(optimal_path)   
+    for i in range(len(path)):
+        node = path.pop()
+        img_map[node[1]-1][node[0]-1] = [0, 0, 0]       
+        a = cv.flip(final_map, 0)
+        out.write(a)
+        i+=1
+    out.release()
+    print("Video output generated")
