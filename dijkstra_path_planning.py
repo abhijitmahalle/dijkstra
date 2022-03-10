@@ -340,4 +340,16 @@ def backtracking(closed_list):
         
     return path
 
+#Function that removes duplicate elements of a list
+def removeDuplicate(visited_node):
+    '''
+    Input:
+    visited_node : list[]
+    
+    Output:
+    visited_node : list[] with duplicate elements removed
+    '''
+    seen = set()
+    seen_add = seen.add
+    return [x for x in visited_node if not (x in seen or seen_add(x))]
 
