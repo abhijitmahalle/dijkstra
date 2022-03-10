@@ -297,3 +297,24 @@ def decisionOnNode(obstacle_space, node, node_info, open_list, closed_list):
             else:
                 open_list[node] = node_info 
 
+#Function that returns the node with lowest cost to come in the open list
+def nodeWithLowestC2C(open_list):
+    '''
+    Input:
+    open_list : dictionary of all open nodes
+    
+    Output:
+    Node with lowest cost to come
+    '''
+    node, min_= next(iter(open_list.items()))
+    min_c2c = min_[1]
+    
+    for i in open_list:
+        if min_c2c > open_list[i][1]:
+            min_c2c = open_list[i][1]
+            node = i
+        else:
+            continue
+    return node
+
+
