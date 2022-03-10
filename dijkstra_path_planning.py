@@ -102,5 +102,176 @@ def obstacle_space(node):
         return False
 
 
+#Function to move the node to the left
+def ActionMoveLeft(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False, node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=1:
+        child_node = ((node[0]-1), node[1])
+        child_node_info = [node, (node_info[1] + 1)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[83]:
+
+
+#Function to move the node to the right
+def ActionMoveRight(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=400:
+        child_node = ((node[0]+1), node[1])
+        child_node_info = [node, (node_info[1] + 1)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[84]:
+
+
+#Function to move the node up
+def ActionMoveUp(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[1]!=250:
+        child_node = ((node[0]), node[1]+1)
+        child_node_info = [node, (node_info[1] + 1)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[85]:
+
+
+#Function to move the node down
+def ActionMoveDown(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[1]!=1:
+        child_node = ((node[0]), node[1]-1)
+        child_node_info = [node, (node_info[1] + 1)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[86]:
+
+
+#Function to move the node one position up and one position left
+def ActionMoveUpLeft(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=1 and node[1]!=250:
+        child_node = ((node[0]-1), node[1]+1)
+        child_node_info = [node, (node_info[1] + 1.4)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[87]:
+
+
+#Function to move the node one position up and one position right
+def ActionMoveUpRight(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=400 and node[1]!=250:
+        child_node = ((node[0]+1), node[1]+1)
+        child_node_info = [node, (node_info[1] + 1.4)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[88]:
+
+
+#Function to move the node one position down and one position left
+def ActionMoveDownLeft(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=1 and node[1]!=1:
+        child_node = ((node[0]-1), node[1]-1)
+        child_node_info = [node, (node_info[1] + 1.4)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
+
+
+# In[89]:
+
+
+#Function to move the node one position down and one position right
+def ActionMoveDownRight(node, node_info):
+    '''
+    Input:
+    node      : tuple(x, y)
+    node_info : list[parent_node, cost_to_come]
+    
+    Output:
+    True, child_node, child_node_info if the action is successful
+    False node, node_info if the action is unsuccessful
+    '''
+    if node[0]!=400 and node[1]!=1:
+        child_node = ((node[0]+1), node[1]-1)
+        child_node_info = [node, (node_info[1] + 1.4)]
+        return True, child_node, child_node_info
+    else:
+        return False, node, node_info
 
 
