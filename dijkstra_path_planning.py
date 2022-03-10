@@ -274,4 +274,26 @@ def ActionMoveDownRight(node, node_info):
     else:
         return False, node, node_info
 
+#Function that determines if the newly generated node should be added in the open list or should the cost to come and parent be
+#changed of the existing node
+def decisionOnNode(obstacle_space, node, node_info, open_list, closed_list):
+    '''
+    Input:
+    obstacle_space : function that defines the obstacle space
+    node           : tuple(x, y)
+    node_info      : list[parent_node, cost_to_come]
+    open_list      : dictionary of all open nodes
+    closed_list    : dictionary of all closed nodes
+    
+    Output:
+    Node with lowest cost to come
+    '''
+    if not obstacle_space(node):
+        if node not in closed_list.keys():
+            if node in open_list.keys():
+                if open_list[node][1] > node_info[1]:
+                    open_list[node][0] = node_info[0]
+                    open_list[node][1] = node_info[1]
+            else:
+                open_list[node] = node_info 
 
