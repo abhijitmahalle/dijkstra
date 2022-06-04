@@ -320,7 +320,7 @@ def visualization(img_map, in_obstacle_space, visited_node, optimal_path):
     "dijkstra.avi" video file stored in the project folder
     '''
     print("Generating video output named 'dijkstra'...\n")
-    out = cv.VideoWriter('dijsktra.avi',cv.VideoWriter_fourcc(*'XVID'), 3000, (400,250))
+    out = cv.VideoWriter('dijkstra.avi', cv.VideoWriter_fourcc(*'XVID'), 3000, (400,250))
     for y in range(img_map.shape[0]):
         for x in range(img_map.shape[1]):
             node = (x, y)
@@ -341,8 +341,9 @@ def visualization(img_map, in_obstacle_space, visited_node, optimal_path):
         a = cv.flip(final_map, 0)
         out.write(a)
         i+=1
+    cv.imwrite('path.png', a)
     out.release()
-    print("Video output generated")
+    print("Video output generated.")
     
 while True:
     initial_node = tuple(map(int, input("Enter initial node: ").split(",")))
