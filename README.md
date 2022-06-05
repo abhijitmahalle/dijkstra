@@ -1,5 +1,9 @@
 # Implementation of Dijkstra's algorithm on a point robot
-This repository contains code to find path between start position and goal position for a point robot using Dijkstra's path-planning algorithm.
+This repository contains code to find path between start position and goal position for a point robot using Dijkstra's path-planning algorithm.   
+
+The action set for this project is: 
+
+<img src = "https://github.com/AbhijitMahalle/dijkstra/blob/master/map/action_set.PNG">  
 
 ## Required libraries 
 1. NumPy
