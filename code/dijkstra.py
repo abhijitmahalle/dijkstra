@@ -346,14 +346,18 @@ def visualization(img_map, in_obstacle_space, visited_node, optimal_path):
     print("Video output generated.")
     
 while True:
-    initial_node = tuple(map(int, input("Enter initial node: ").split(",")))
-    if in_clearance_space(initial_node):
+    x = int(input("Enter start node's x co-ordinate in the range 1-400: "))
+    y = int(input("Enter start node's y co-ordinate in the range 1-250: "))
+    start_node = (x, y)
+    if in_clearance_space(start_node):
         print("\nThe start node is in the obstacle space. Please try again.\n")
     else:
         print("\nStart node accepted\n")
         break
 while True:
-    goal_node = tuple(map(int, input("Enter goal node: ").split(",")))
+    x = int(input("Enter goal node's x co-ordinate in the range 1-400: "))
+    y = int(input("Enter goal node's y co-ordinate in the range 1-250: "))
+    goal_node = (x, y)
     if in_clearance_space(goal_node):
         print("\nThe goal node is in the obstacle space. Please try again.\n")
     else:
@@ -361,11 +365,11 @@ while True:
         break
 
 open_list = {}
-open_list[initial_node] = [None, 0]
+open_list[start_node] = [None, 0]
 closed_list = {}
 node_index = 1
 visited_node = []
-visited_node.append(initial_node)
+visited_node.append(start_node)
 count = 0
 
 while True:
