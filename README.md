@@ -16,4 +16,4 @@ Video output "dijkstra" will be generated in the result folder.
 ![](https://github.com/AbhijitMahalle/dijkstra/blob/master/gif/dijkstra.gif)
 
 ### Generated path
-![](https://github.com/AbhijitMahalle/dijkstra/blob/master/result/path.png)
+![](https://github.com/AbhijitMahalle/dijkstra/blob/master/results/path.png)
