@@ -16,7 +16,7 @@ python dijkstra.py
 ```
 Video output "dijkstra" will be generated in the result folder.
 
-### Node Exploration
+### Node exploration
 ![](https://github.com/AbhijitMahalle/dijkstra/blob/master/gif/dijkstra.gif)
 
 ### Generated path
